@@ -1,3 +1,5 @@
+cristian-zaharia/**/*
+resources/**/*
 # Logs
 logs
 *.log

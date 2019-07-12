@@ -1,0 +1,32 @@
+{
+  "name": "hugo-pipes-bootstrap",
+  "version": "1.0.0",
+  "description": "Using Bootstrap with Hugo pipes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcanuy/hugo-pipes-bootstrap.git"
+  },
+  "keywords": [
+    "hugo",
+    "bootstrap"
+  ],
+  "author": "Marcelo Canina",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marcanuy/hugo-pipes-bootstrap/issues"
+  },
+  "homepage": "https://github.com/marcanuy/hugo-pipes-bootstrap#readme",
+  "dependencies": {
+    "autoprefixer": "^9.1.0",
+    "bootstrap": "^4.3.1",
+    "lax.js": "^1.2.0",
+    "postcss-cli": "^6.0.1"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.1.0"
+  }
+}

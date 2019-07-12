@@ -1,0 +1,110 @@
+{{ $bootstrap_custom := false }}
+
+{{ $jquery := resources.Get "js/jquery-3.2.1.js"  | minify }}
+{{ $popper := resources.Get "js/popper.js" | minify }}
+{{ $lozad := resources.Get "js/lozad.min.js" | minify }}
+
+{{ $allbootstrap	:= resources.Get "js/bootstrap.min.js" }}
+{{ $util			:= resources.Get "js/dist/util.js" }}
+{{ $alert			:= resources.Get "js/dist/alert.js" }}
+{{ $button			:= resources.Get "js/dist/button.js" }}
+{{ $carousel		:= resources.Get "js/dist/carousel.js" }}
+{{ $collapse		:= resources.Get "js/dist/collapse.js" }}
+{{ $dropdown		:= resources.Get "js/dist/dropdown.js" }}
+{{ $modal			:= resources.Get "js/dist/modal.js" }}
+{{ $popover			:= resources.Get "js/dist/popover.js" }}
+{{ $scrollspy		:= resources.Get "js/dist/scrollspy.js" }}
+{{ $tab				:= resources.Get "js/dist/tab.js" }}
+{{ $tooltip			:= resources.Get "js/dist/tooltip.js" }}
+{{ $index			:= resources.Get "js/dist/index.js" }}
+
+{{ $nav_patch := resources.Get "js/nav-patch.js" }}
+{{ $lozad_ := resources.Get "js/lozad_.js" }}
+{{ $cookies := resources.Get "js/cookies.js" }}
+{{ $font := resources.Get "js/google-font.js" }}
+
+{{/* custom bootstrap or not */}}
+{{ $customBootstrap := slice $util $tab $collapse $dropdown | resources.Concat "/js/customBootstrap.js" | minify }}
+{{ $bootstrap := resources.Get "/js/bootstrap.min.js" | minify }}
+
+
+
+{{/* I have removed*/}}
+{{ $static := slice $font $lozad_ $nav_patch $cookies | resources.Concat "/js/static.js" | minify }}
+
+
+
+<!--link href="https://fonts.googleapis.com/css?family=Arvo%7COpen+Sans+Condensed:300" rel="stylesheet"-->
+
+<script src="{{ $jquery.Permalink }}"></script>
+<script src="{{ $popper.Permalink }}"></script>
+
+{{ if $bootstrap_custom }}
+    <script src="{{ $customBootstrap.Permalink }}"></script>
+{{ else }}
+    <script src="{{ $bootstrap.Permalink }}"></script>
+{{ end }}
+
+<script src="{{ $lozad.Permalink }}"></script>
+<script src="{{ $static.Permalink }}"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+
+<script>
+    // init Isotope
+    var $grid = $('.grid').isotope({
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        masonry: {
+            // use element for option
+            columnWidth: '.grid-sizer'
+        }
+    });
+
+    $grid.imagesLoaded().progress( function() {
+        $grid.isotope('layout');
+    });
+
+    var filterFns = {
+        // show if number is greater than 50
+        numberGreaterThan50: function() {
+        var number = $(this).find('.number').text();
+        return parseInt( number, 10 ) > 50;
+        },
+        // show if name ends with -ium
+        ium: function() {
+        var name = $(this).find('.name').text();
+        return name.match( /ium$/ );
+        }
+    };
+
+    // bind filter button click
+    $('.filters-button-group').on( 'click', 'button', function() {
+        var filterValue = $( this ).attr('data-filter');
+        // use filterFn if matches value
+        filterValue = filterFns[ filterValue ] || filterValue;
+        $grid.isotope({ filter: filterValue });
+    });
+    // change is-checked class on buttons
+    $('.button-group').each( function( i, buttonGroup ) {
+        var $buttonGroup = $( buttonGroup );
+        $buttonGroup.on( 'click', 'button', function() {
+        $buttonGroup.find('.is-checked').removeClass('is-checked');
+        $( this ).addClass('is-checked');
+        });
+    });
+
+</script>
+{{/*
+    {{ if ne (getenv "HUGO_ENV") "production" }}
+        {{ $vendorscript := slice $jquery $popper $b | resources.Concat "/js/vendor.js" }}
+        <!--script src="{{ $vendorscript.Permalink }}"></script-->
+        
+    {{ else }}
+        {{ $vendorscript := slice $jquery $popper $b | resources.Concat "/js/vendor.js" | minify | fingerprint }}
+        <script src="{{ $vendorscript.Permalink }}"></script>
+        
+        {{ $userscript := slice  $lozadJs $lozad | resources.Concat "/js/user.js" | minify | fingerprint }}
+        <script src="{{ $userscript.Permalink }}"></script>
+    {{ end }}
+*/}}

@@ -1,0 +1,13 @@
+
+{{ if .Site.IsServer }}
+    {{ partial "css/dev/_home.html" . }}
+    <style>
+        body.dev {
+            border-top: 10px solid red;
+        }
+    </style>
+{{ else }}
+    {{ partial "css/import/bootstrap.html" . }}
+{{ end }}
+
+<style></style>

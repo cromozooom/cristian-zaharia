@@ -1,0 +1,49 @@
+//@include media-breakpoint-up(sm) { ... }
+//@include media-breakpoint-up(md) { ... }
+@include media-breakpoint-up(lg) { 
+    .nav-link {
+        min-width: 10rem;
+    }
+    
+    .navbar {
+        &-nav {
+            &__left {
+               margin-right: 2.5rem;
+            }
+            &__right {
+                margin-left: 2.5rem;
+            }
+            
+        }
+    
+        &-brand {
+            
+            &__center {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+ }
+//@include media-breakpoint-up(xl) { ... }
+
+.button--link {
+    border: none;
+    background: transparent;
+    & .is-checked {
+        text-decoration: underline;
+    }
+}
+.navbar {
+    background: transparent;
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    svg {
+        width: 50px;
+        height: auto;
+    }
+}

@@ -1,0 +1,67 @@
+<ul class="nav justify-content-center button-group filters-button-group grid--nav">
+    <li class="nav-item">
+        <button class="nav-link button button--link is-checked" data-filter="*">All</a>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link button button--link" data-filter=".3D">3D</a>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link button button--link" data-filter=".2D">2D</a>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link button button--link" data-filter=".design">Design</a>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link button button--link" data-filter=".motion">Motion</a>
+    </li>
+
+</ul>
+{{/*
+    <div class="grid" data-isotope='{ "itemSelector": ".grid-item", "layoutMode": "fitRows" }'>
+        <div class="grid-item video">VIDEO</div>
+        <div class="grid-item grid-item--width2 image">IMAGE</div>
+        <div class="grid-item video">VIDEO</div>
+    </div>
+*/}}
+<ul class="grid list-unstyled">
+    <li class="grid-sizer"></li>
+    <!-- start portfolio item -->
+    {{ range where .Site.Pages "Section" "projects" }}
+        {{ if .Params.img.src }}
+            <li class='grid-item {{ .Params.prType }}
+                {{ if or (eq .Params.img.size "big") ( eq .Params.img.shape "double square" ) }} grid-item--width2{{ end }}'>
+                <a href="single-project-page-01.html">
+                    <figure>
+                        <div class="portfolio-img">
+                            {{ $imageResource := ($.Site.GetPage "section" "uploads").Resources.GetMatch (strings.TrimPrefix "/uploads/" .Params.img.src ) }}
+                            {{ if eq $imageResource nil }}
+                                <p class="alert alert-danger mx-4 py-4">
+                                    You're close. But there is a mistake in the thumb image. - {{ $imageResource }}
+                                </p>
+                            {{ else }}
+                                {{ if eq .Params.img.shape "square" }}
+                                    {{ $square := ( $imageResource.Resize "900x900") }}
+                                    <img class="img-fluid" title="{{ .Title }}" alt="{{ .Title }}" src="{{ .Site.BaseURL }}{{ $square.RelPermalink }}" />
+                                {{ else if eq .Params.img.shape "double square" }}
+                                    {{ $doubleSquare := ( $imageResource.Resize "900x445") }}
+                                    <img class="img-fluid" title="{{ .Title }}" alt="{{ .Title }}" src="{{ .Site.BaseURL }}{{ $doubleSquare.RelPermalink }}" />
+
+                                {{ end }}
+                            {{ end }}
+                        
+                        </div>
+                        <figcaption>
+                            <div class="portfolio-hover-main">
+                                <div class="portfolio-hover-box align-middle"> 
+                                    <div class="portfolio-icon alt-font font-weight-600 icon-medium">+</div>
+                                    <span class="text-extra-large alt-font text-extra-dark-gray margin-5px-bottom">Tailoring Interior</span>
+                                    <p class="no-letter-spacing text-small mb-0 text-medium-gray">Branding and Brochure</p>
+                                </div>
+                            </div> 
+                        </figcaption>
+                    </figure>
+                </a>
+            </li>
+        {{ end }}
+    {{ end }}
+</ul>

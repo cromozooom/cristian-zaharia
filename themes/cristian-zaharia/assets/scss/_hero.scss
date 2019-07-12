@@ -1,0 +1,21 @@
+body {
+    position: relative;
+}
+.hero {
+    height: 98vh;
+    position: relative;
+    overflow: hidden;
+    &--image {
+        position: absolute;
+        bottom: 0%;
+        z-index: 1;
+    }
+    &--typography {
+        position: absolute;
+        display: block;
+        z-index: 2;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, 0%);
+    }
+}
