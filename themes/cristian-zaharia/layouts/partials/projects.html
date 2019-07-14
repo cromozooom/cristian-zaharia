@@ -13,11 +13,11 @@
         </li>
     {{end}}
 </ul>
-<ul class="grid list-unstyled">
-    <li class="grid-sizer"></li>
+<ul class="projects list-unstyled">
+    <li class="projects-sizer"></li>
     {{ range $index, $p := last 100 (where .Site.Pages "Section" "projects") }}
         {{ if .Params.img.src }}
-            <li class='grid-item {{ with .Params.tags }}{{ delimit . " " }}{{ end }}{{ if or (eq .Params.img.size "big") ( eq .Params.img.shape "double square" ) }} grid-item--width2{{ end }}'>
+            <li class='projects-item {{ with .Params.tags }}{{ delimit . " " }}{{ end }}{{ if or (eq .Params.img.size "big") ( eq .Params.img.shape "double square" ) }} projects-item--width2{{ end }}'>
                 <a href="{{ .Permalink }}">
                     <figure>
                         <div class="portfolio-img lax" data-lax-opacity="1 0, vh 1">

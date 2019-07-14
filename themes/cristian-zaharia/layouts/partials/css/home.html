@@ -30,7 +30,8 @@
     {{ if .Params.section }}
         {{ range $index, $s := .Params.section }}
             .section__{{ $index }} {
-                border: 1px solid red;
+                background: var(--bg, black);
+                color: var(--fg, black);
             }
         {{ end }}
     {{ end }}
