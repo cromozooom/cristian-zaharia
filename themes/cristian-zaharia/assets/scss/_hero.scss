@@ -5,6 +5,9 @@ body {
     height: 98vh;
     position: relative;
     overflow: hidden;
+    color: var(--fg, white);
+    background:  var(--bg, white);
+    
     &--image {
         position: absolute;
         bottom: 0%;

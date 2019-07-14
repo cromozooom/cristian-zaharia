@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand navbar-brand__center mx-0 px-0" href="#">
+<nav class="navbar navbar-expand-lg navbar--site">
+    <a class="navbar-brand navbar-brand__center mx-0 px-0" href='{{.Site.BaseURL }}'>
             {{ partial "svg/logo-alt-cristian-saharia.svg" }}
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,19 +8,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav navbar-nav__left ml-auto">
             <li class="nav-item active">
-                <a class="nav-link text-center" href="#">Project</a>
+                <a class="nav-link text-center" href='{{ .Site.BaseURL }}projects/'>My Projects</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link text-center" href="#">Project 1</a>
+                <a class="nav-link text-center" href="{{ .Site.BaseURL }}">Show</a>
             </li>
         </ul>
 
         <ul class="navbar-nav navbar-nav__right  mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-center" href="#">About me</a>
+                <a class="nav-link text-center" href='{{ .Site.BaseURL }}about-me/'>About me</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link text-center" href="#">Contact</a>
+                <a class="nav-link text-center" href='{{ .Site.BaseURL }}contact/'>Contact</a>
             </li>
         </ul>
     </div>

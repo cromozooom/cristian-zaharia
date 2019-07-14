@@ -1,0 +1,27 @@
+<section class="container-fluid intro py-4" >
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center py-4">
+                <h1>{{ .Params.intro.title }}</h1>
+                <p>{{ .Params.intro.sub }}</p>
+            </div>
+            <div class="col-8 pr-xl-4">
+                <div class="wysiwyg pb-4">
+                    {{ .Params.intro.content }}
+                </div>
+            </div>
+            <div class="col-4 pl-xl-4">
+                <dl class="row pb-4">
+                    {{ range .Params.attribute }}
+                        <dt class="col-sm-3 py-2">
+                            {{ .title }}
+                        </dt>
+                        <dd class="col-sm-9 py-2">
+                            {{ .content }}
+                        </dd>
+                    {{ end }}
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>

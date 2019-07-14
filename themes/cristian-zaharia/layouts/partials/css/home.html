@@ -1,13 +1,38 @@
 
+{{ partial "css/dev/_home.html" . }}
 {{ if .Site.IsServer }}
-    {{ partial "css/dev/_home.html" . }}
     <style>
         body.dev {
             border-top: 10px solid red;
         }
     </style>
 {{ else }}
-    {{ partial "css/import/bootstrap.html" . }}
 {{ end }}
 
-<style></style>
+<style>
+    {{ if .Params.hero }}
+        .hero, .navbar--site {
+            --bg: {{ .Params.hero.theme.bg }};
+            --txt-shadow: 0px 1px 2px {{ .Params.hero.theme.bg }};
+            --fg: {{ .Params.hero.theme.fg }};
+            --accent: {{ .Params.hero.theme.accent }};
+            --mute: {{ .Params.hero.theme.mute }};
+        }
+    {{ end }}
+    {{ if .Params.intro }}
+        .intro {
+            --bg: {{ .Params.intro.theme.bg }};
+            --fg: {{ .Params.intro.theme.fg }};
+            --accent: {{ .Params.intro.theme.accent }};
+            --mute: {{ .Params.intro.theme.mute }};
+        }
+    {{ end }}
+    {{ if .Params.section }}
+        {{ range $index, $s := .Params.section }}
+            .section__{{ $index }} {
+                border: 1px solid red;
+            }
+        {{ end }}
+    {{ end }}
+
+</style>

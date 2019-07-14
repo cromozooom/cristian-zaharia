@@ -1,5 +1,7 @@
+.vscode
 cristian-zaharia/**/*
 resources/**/*
+public/**/*
 # Logs
 logs
 *.log

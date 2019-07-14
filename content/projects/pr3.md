@@ -2,7 +2,7 @@
 date = "2019-02-05T00:00:00Z"
 title = "Pr 1"
 layout = "project"
-prType = "2D"
+tags = ["2d"]
 [img]
 src = "/uploads/portfolio-image4.jpg"
 shape = "double square"

@@ -2,7 +2,7 @@
 //@include media-breakpoint-up(md) { ... }
 @include media-breakpoint-up(lg) { 
     .nav-link {
-        min-width: 10rem;
+        min-width: 8rem;
     }
     
     .navbar {
@@ -45,5 +45,12 @@
     svg {
         width: 50px;
         height: auto;
+    }
+    &--site {
+        a {
+            font-weight: 700;
+            color: var(--accent, white);
+            text-shadow: var(--txt-shadow, black);
+        }
     }
 }

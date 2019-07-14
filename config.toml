@@ -1,4 +1,8 @@
-baseURL = "http://example.org/"
+baseURL = "http://www.altcristian.com/dev/"
 languageCode = "en-us"
 theme = "cristian-zaharia"
 title = "My New Hugo Site"
+
+[taxonomies]
+category = "categories"
+tag = "tags"

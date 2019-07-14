@@ -3,6 +3,11 @@
 {{ $jquery := resources.Get "js/jquery-3.2.1.js"  | minify }}
 {{ $popper := resources.Get "js/popper.js" | minify }}
 {{ $lozad := resources.Get "js/lozad.min.js" | minify }}
+{{ $lax := resources.Get "js/lax.js" | minify }}
+{{ $isotope := resources.Get "js/isotope.pkgd.min.js" | minify }}
+{{ $imagesloaded := resources.Get "js/imagesloaded.pkgd.js" | minify }}
+
+
 
 {{ $allbootstrap	:= resources.Get "js/bootstrap.min.js" }}
 {{ $util			:= resources.Get "js/dist/util.js" }}
@@ -45,10 +50,12 @@
     <script src="{{ $bootstrap.Permalink }}"></script>
 {{ end }}
 
+
+<script src="{{ $lax.Permalink }}"></script>
 <script src="{{ $lozad.Permalink }}"></script>
 <script src="{{ $static.Permalink }}"></script>
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+<script src="{{ $isotope.Permalink }}"></script>
+<script src="{{ $imagesloaded.Permalink }}"></script>
 
 <script>
     // init Isotope
@@ -95,16 +102,17 @@
     });
 
 </script>
-{{/*
-    {{ if ne (getenv "HUGO_ENV") "production" }}
-        {{ $vendorscript := slice $jquery $popper $b | resources.Concat "/js/vendor.js" }}
-        <!--script src="{{ $vendorscript.Permalink }}"></script-->
-        
-    {{ else }}
-        {{ $vendorscript := slice $jquery $popper $b | resources.Concat "/js/vendor.js" | minify | fingerprint }}
-        <script src="{{ $vendorscript.Permalink }}"></script>
-        
-        {{ $userscript := slice  $lozadJs $lozad | resources.Concat "/js/user.js" | minify | fingerprint }}
-        <script src="{{ $userscript.Permalink }}"></script>
-    {{ end }}
-*/}}
+<script>
+    window.onload = function() {
+        lax.setup({
+            breakpoints: { small: 0, large: 1360 }
+        }) // init
+    
+        const updateLax = () => {
+            lax.update(window.scrollY)
+            window.requestAnimationFrame(updateLax)
+        }
+    
+        window.requestAnimationFrame(updateLax)
+    }
+</script>

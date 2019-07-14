@@ -11,8 +11,7 @@
 	<link rel="canonical" href="{{ .Permalink }}">
 	<title>{{ .Title }}</title>
 	<meta name="description" content="metadescription">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed:400,600|PT+Serif" media="all">
-
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab:300&display=swap" rel="stylesheet">
 	<!-- icons -->
 	<link rel="shortcut icon" href="https://www.wdwbingo.co.uk/wp-content/themes/wdw/assets/images/fav/favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" sizes="57x57" href="https://www.wdwbingo.co.uk/wp-content/themes/wdw/assets/images/fav/apple-icon-57x57.png">
@@ -29,15 +28,13 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="https://www.wdwbingo.co.uk/wp-content/themes/wdw/assets/images/fav/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="https://www.wdwbingo.co.uk/wp-content/themes/wdw/assets/images/fav/favicon-16x16.png">
 
+
 	{{ partial "css/home.html" . }}
 </head>
 <body class="{{ if .Site.BuildDrafts }} live {{else }} devx {{ end }}">
 	{{ partial "nav.html" . }}
-	<div class="container">
-	</div>
-	{{ partial "hero.html" . }}
-	{{ partial "projects.html" . }}
 	{{ block "content" . }}{{ end }}
+	{{ partial "footer.html" . }}
 	{{ partial "_js.html" . }}
 </body>
 </html>

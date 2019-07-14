@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    {{ range $index, $s := .Params.section }}
+    {{ if eq .assets.video true }}
+        <section class="section section__{{ $index }} row px-0">
+            <div class="col d-flex justify-content-center align-items-center">
+                <div class="wysiwyg">
+                    <h2>{{ .title }}</h2>
+                    <small class="pb-4 d-block">{{ .sub }}</small>
+                    <p>
+                        {{ .content }}
+                    </p>
+                </div>
+            </div>
+            <div class="col px-0">
+                <div class="section__video">
+                    <iframe src='https://player.vimeo.com/video/{{ .assets.img }}' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+            </div>
+        </section>
+        {{ end }}
+    {{ end }}
+</div>

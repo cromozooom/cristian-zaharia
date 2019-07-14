@@ -1,0 +1,21 @@
+<footer class="page-footer container py-4">
+    <div class="row justify-content-between py-4">
+        <div class="col-6">
+            <small> copyright © Cristian Zaharia 2013–2019.</small>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            {{ partial "svg/svg.html" }}
+            <ul class="list-inline">
+                {{ range $.Site.Data.social }}
+                    <li class="list-inline-item px-3">
+                        <a href="{{ .link }}" target="_blank">
+                            <svg class="social--icon" viewBox="0 0 100 100">
+                                <use xlink:href="#{{ .icon }}" x="0" y="0"></use>
+                            </svg>
+                        </a>
+                    </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</footer>

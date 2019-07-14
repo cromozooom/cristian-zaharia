@@ -1,8 +1,28 @@
 <section class="hero">
-    <img src="images/bg1.png" alt="" class="img-fluid hero--image ">
+    {{ $imageResource := ($.Site.GetPage "section" "uploads").Resources.GetMatch (strings.TrimPrefix "/uploads/" .Params.hero.img ) }}
+    {{ if eq $imageResource nil }}
+        <p class="alert alert-danger mx-4 py-4">
+            You're close. But there is a mistake in the thumb image. - {{ $imageResource }}
+        </p>
+    {{ else }}
+        {{ $hero := ( $imageResource.Resize "1920x1159") }}
+        <img class="img-fluid hero--image" title="{{ .Title }}" alt="{{ .Title }}" src='{{ strings.TrimRight "/dev/" .Site.BaseURL }}{{ $hero.RelPermalink }}' />
+    {{ end }}
+    {{ if or .IsHome ( eq .Title "My projects")}}
     <div class="hero--typography text-center">
-        <span class="after-before-separator text-extra-small alt-font text-white-2 letter-spacing-3 sm-letter-spacing-0 text-uppercase margin-20px-bottom sm-margin-5px-bottom d-inline-block">we work hard, we play hard</span>
-        <h2 class="font-weight-600 text-white-2 alt-font margin-40px-bottom sm-margin-25px-bottom">We combine design, thinking and technical</h2>
-        <a href="portfolio-full-width-grid-transform.html" class="btn btn-transparent-white btn-rounded btn-medium text-link-white-2">Featured Works</a>
+        <span class="lax"
+            data-lax-opacity="0 1, 100 1, 300 0"
+        >{{ .Params.hero.l1 }}</span>
+        <h1 class="lax"
+            data-lax-opacity="0 1, 100 1, 500 0"
+        >{{ .Params.hero.l2 }}</h1>
+
+        {{ if or (ne .Params.hero.a "" ) ( ne .Params.hero.ah "" ) }}
+            <a href="{{ .Params.hero.ah }}" class="lax"
+                data-lax-opacity="0 1, 100 1, 700 0"
+            >{{ .Params.hero.a }}</a>
+        {{ end }}
     </div>
+    {{ end }}
+
 </section>
